@@ -5,6 +5,63 @@ using namespace std;
 
 BOOST_AUTO_TEST_SUITE(class_Vector3D)
 
+struct MyFirstFixture_
+{
+	MyFirstFixture_()
+		: vector(1,2,3)
+		, vectorOne(3 * vector)
+		, vectorTwo(0*vector)
+		, vectorThree(-1 * vector)
+		, expectedVectorOne(3,6,9)
+		, expectedVectorTwo(0,0,0)
+		, expectedVectorThree(-1,-2,-3)
+	{}
+
+	CVector3D vector;
+
+	CVector3D vectorOne;
+	CVector3D vectorTwo;
+	CVector3D vectorThree;
+
+	CVector3D expectedVectorOne;
+	CVector3D expectedVectorTwo;
+	CVector3D expectedVectorThree;
+};
+
+struct SecondTestFixture_
+{
+	SecondTestFixture_()
+		: vectorOne(0, 1, 1)
+		, vectorTwo(1, 1, 2)
+		, vectorThree(2, 2, 3)
+	{}
+	CVector3D vectorOne;
+	CVector3D vectorTwo;
+	CVector3D vectorThree;
+};
+
+struct ThirdTestFixture_
+{
+	ThirdTestFixture_()
+		: vector(1, 2, 3)
+		, vectorOne(vector / 1)
+		, vectorTwo(vector / 0)
+		, vectorThree(vector / -1)
+		, expectedVectorOne(1, 2, 3)
+		, expectedVectorTwo(expectedVectorOne)
+		, expectedVectorThree(-expectedVectorOne)
+	{}
+	CVector3D vector;
+
+	CVector3D vectorOne;
+	CVector3D vectorTwo;
+	CVector3D vectorThree;
+
+	CVector3D expectedVectorOne;
+	CVector3D expectedVectorTwo;
+	CVector3D expectedVectorThree;
+};
+
 	BOOST_AUTO_TEST_CASE(can_create_zero_vector)
 	{
 		CVector3D emptyVector;
@@ -54,11 +111,8 @@ BOOST_AUTO_TEST_SUITE(class_Vector3D)
 		BOOST_CHECK(-newVector == expectedVector);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_add_vectors)
+	BOOST_FIXTURE_TEST_CASE(can_add_vectors, SecondTestFixture_)
 	{
-		CVector3D vectorOne(0, 1, 1);
-		CVector3D vectorTwo(1, 1, 2);
-		CVector3D vectorThree(2, 2, 3);
 		CVector3D vectorsSum = vectorOne + vectorTwo + vectorThree;
 
 		CVector3D expectedVector(3, 4, 6);
@@ -66,11 +120,8 @@ BOOST_AUTO_TEST_SUITE(class_Vector3D)
 		BOOST_CHECK(expectedVector == vectorsSum);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_subtract_vectors)
+	BOOST_FIXTURE_TEST_CASE(can_subtract_vectors, SecondTestFixture_)
 	{
-		CVector3D vectorOne(0, 1, 1);
-		CVector3D vectorTwo(1, 1, 2);
-		CVector3D vectorThree(2, 2, 3);
 		CVector3D vectorsDiffirence = vectorOne - vectorTwo - vectorThree;
 
 		CVector3D expectedVector(-3, -2, -4);
@@ -102,52 +153,22 @@ BOOST_AUTO_TEST_SUITE(class_Vector3D)
 		BOOST_CHECK(expectedVector == vectorOne);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_multiply_scalar_by_vector)
+	BOOST_FIXTURE_TEST_CASE(can_multiply_scalar_by_vector, MyFirstFixture_)
 	{
-		CVector3D vector(1, 2, 3);
-
-		CVector3D vectorOne = 3 * vector;
-		CVector3D vectorTwo = 0 * vector;
-		CVector3D vectorThree = -1 * vector;
-
-		CVector3D expectedVectorOne(3, 6, 9);
-		CVector3D expectedVectorTwo(0, 0, 0);
-		CVector3D expectedVectorThree(-1, -2, -3);
-
 		BOOST_CHECK(expectedVectorOne == vectorOne);
 		BOOST_CHECK(expectedVectorTwo == vectorTwo);
 		BOOST_CHECK(expectedVectorThree == vectorThree);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_multiply_vector_by_scalar)
+	BOOST_FIXTURE_TEST_CASE(can_multiply_vector_by_scalar, MyFirstFixture_)
 	{
-		CVector3D vector(1, 2, 3);
-
-		CVector3D vectorOne = vector * 3;
-		CVector3D vectorTwo = vector * 0;
-		CVector3D vectorThree = vector * -1;
-
-		CVector3D expectedVectorOne(3, 6, 9);
-		CVector3D expectedVectorTwo(0, 0, 0);
-		CVector3D expectedVectorThree(-1, -2, -3);
-
 		BOOST_CHECK(expectedVectorOne == vectorOne);
 		BOOST_CHECK(expectedVectorTwo == vectorTwo);
 		BOOST_CHECK(expectedVectorThree == vectorThree);
 	}
 
-	BOOST_AUTO_TEST_CASE(can_divide_vector_by_scalar)
+	BOOST_FIXTURE_TEST_CASE(can_divide_vector_by_scalar, ThirdTestFixture_)
 	{
-		CVector3D vector(1, 2, 3);
-
-		CVector3D vectorOne = vector / 1;
-		CVector3D vectorTwo = vector / 0;
-		CVector3D vectorThree = vector / -1;
-
-		CVector3D expectedVectorOne(1, 2, 3);
-		CVector3D expectedVectorTwo(1, 2, 3);
-		CVector3D expectedVectorThree(-1, -2, -3);
-
 		BOOST_CHECK(expectedVectorOne == vectorOne);
 		BOOST_CHECK(expectedVectorTwo == vectorTwo);
 		BOOST_CHECK(expectedVectorThree == vectorThree);

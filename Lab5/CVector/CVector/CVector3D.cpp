@@ -90,12 +90,12 @@ CVector3D& CVector3D::operator /=(double scalar)
 
 bool CVector3D::operator ==(CVector3D const& vector)const
 {
-	if ((fabs(x - vector.x) < DBL_EPSILON) && (fabs(y - vector.y) < DBL_EPSILON) && (fabs(z - vector.z) < DBL_EPSILON))
-	{
+	return ((fabs(x - vector.x) < DBL_EPSILON) && (fabs(y - vector.y) < DBL_EPSILON) && (fabs(z - vector.z) < DBL_EPSILON));
+	/*{
 		return true;
 	}
 
-	return false;
+	return false;*/
 }
 
 bool CVector3D::operator !=(CVector3D const& vector)const
