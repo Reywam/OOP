@@ -23,19 +23,18 @@ BOOST_AUTO_TEST_SUITE(class_Vector3D)
 
 	BOOST_AUTO_TEST_CASE(can_get_vector_length)
 	{
-		CVector3D newVector(0, 0, 1);
+		CVector3D newVector(2, 2, 1);
 
 		double vectorLength = newVector.GetLength();
-		double expectedVectorLength = 1;
+		double expectedVectorLength = 3;
 
 		BOOST_CHECK_EQUAL(vectorLength, expectedVectorLength);
-
 	}
 
 	BOOST_AUTO_TEST_CASE(can_normalize_vector)
 	{
 		CVector3D newVector(0, 0, 1);
-		CVector3D expectedVector(0, 0, 1);
+		CVector3D expectedVector(0 / 1, 0 / 1, 1 / 1);
 
 		newVector.Normalize();
 		BOOST_CHECK(newVector == expectedVector);

@@ -35,14 +35,11 @@ public:
 	//Возвращает результат сложения двух векторов
 	CVector3D const operator+(CVector3D const& vector2)const;
 
-	//Возвращает результат вычитания двух векторов
 	CVector3D const operator-(CVector3D const& vector2)const;
-
 	//Выполняют увеличение длины вектора на длину второго вектора
 	CVector3D& operator +=(CVector3D const& vector);
 
-	//Выполняют уменьшение длины вектора на длину второго вектора
-	CVector3D& operator -=(CVector3D const& vector);
+	CVector3D& CVector3D::operator -=(CVector3D const& vector);
 
 	//Умножает вектор на скаляр
 	CVector3D const operator *(double scalar)const;
@@ -56,11 +53,10 @@ public:
 	//Умножает вектор на скаляр
 	CVector3D& CVector3D::operator /=(double scalar);
 
-	//
+	//Проверяет вектора на равенство
 	bool CVector3D::operator ==(CVector3D const& other)const;
-
-	//
 	bool CVector3D::operator !=(CVector3D const& other)const;
+
 	// В данном случае данные можно сделать публичными
 	double x, y, z;
 };

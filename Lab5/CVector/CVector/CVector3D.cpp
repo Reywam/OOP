@@ -6,38 +6,6 @@
 #define _USE_MATH_DEFINES
 using namespace std;
 
-//Возвращает результат сложения векторов
-const CVector3D CVector3D::operator+(CVector3D const& vector2)const
-{
-	// левым аргументом является текущий экземпляр класса
-	// правым – единственный аргумент vector2
-	return CVector3D(x + vector2.x, y + vector2.y, z + vector2.z);
-}
-
-//Возвращает результат сложения векторов
-const CVector3D CVector3D::operator-(CVector3D const& vector2)const
-{
-	// левым аргументом является текущий экземпляр класса
-	// правым – единственный аргумент vector2
-	return CVector3D(x - vector2.x, y - vector2.y, z - vector2.z);
-}
-
-CVector3D& CVector3D::operator +=(CVector3D const& vector)
-{
-	x += vector.x;
-	y += vector.y;
-	z += vector.z;
-	return *this;
-}
-
-CVector3D& CVector3D::operator -=(CVector3D const& vector)
-{
-	x -= vector.x;
-	y -= vector.y;
-	z -= vector.z;
-	return *this;
-}
-
 const CVector3D CVector3D::operator+() const
 {
 	return *this;
@@ -46,6 +14,28 @@ const CVector3D CVector3D::operator+() const
 const CVector3D CVector3D::operator-() const
 {
 	return CVector3D(-x, -y, -z);
+}
+
+//Возвращает результат сложения векторов
+const CVector3D CVector3D::operator+(CVector3D const& vector)const
+{
+	return CVector3D(x + vector.x, y + vector.y, z + vector.z);
+}
+
+//Возвращает результат разности векторов
+CVector3D const CVector3D::operator-(CVector3D const& vector)const
+{
+	return *this + (-vector);
+}
+
+CVector3D& CVector3D::operator +=(CVector3D const& vector)
+{
+	return *this = *this + vector;
+}
+
+CVector3D& CVector3D::operator -=(CVector3D const& vector)
+{
+	return *this = *this - vector;
 }
 
 double CVector3D::GetLength()const
@@ -79,39 +69,36 @@ CVector3D const CVector3D::operator /(double scalar)const
 	{
 		return CVector3D(x / scalar, y / scalar, z / scalar);
 	}
+
 	return CVector3D(x, y, z);
 }
 
 CVector3D& CVector3D::operator *=(double scalar)
 {
-	x *= scalar;
-	y *= scalar;
-	z *= scalar;
-	return *this;
+	return *this = *this * scalar;
 }
 
 CVector3D& CVector3D::operator /=(double scalar)
 {
 	if (scalar != 0)
 	{
-		x /= scalar;
-		y /= scalar;
-		z /= scalar;
+		*this = *this / scalar;
 	}
+
 	return *this;
 }
 
-bool CVector3D::operator ==(CVector3D const& other)const
+bool CVector3D::operator ==(CVector3D const& vector)const
 {
-	//return (x == other.x) && (y == other.y) && (z == other.z);
-	if ((fabs(x - other.x) < DBL_EPSILON) && (fabs(y - other.y) < DBL_EPSILON) && (fabs(z - other.z) < DBL_EPSILON))
+	if ((fabs(x - vector.x) < DBL_EPSILON) && (fabs(y - vector.y) < DBL_EPSILON) && (fabs(z - vector.z) < DBL_EPSILON))
 	{
 		return true;
 	}
+
 	return false;
 }
 
-bool CVector3D::operator !=(CVector3D const& other)const
+bool CVector3D::operator !=(CVector3D const& vector)const
 {
-	return !(*this == other);
+	return !(*this == vector);
 }
