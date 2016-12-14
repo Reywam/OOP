@@ -24,7 +24,7 @@ int main()
 	{
 		if (numbers.size() != 5)
 		{
-			throw domain_error("Invalid arguements count.");
+			throw domain_error("Invalid arguements count.\nCount of arguements must be equal to 5.");
 		}
 
 		solution = Solve4(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4]);

@@ -37,36 +37,14 @@ BOOST_AUTO_TEST_SUITE(solve4_function)
 	
 	BOOST_AUTO_TEST_CASE(first_coefficient_must_be_not_equal_zero)
 	{
-		bool isCatched = true;
-
 		double a = 0;
 
-		try
-		{
-			Solve4(a, 1, 2, 3, 4);
-		}
-		catch(std::invalid_argument)
-		{
-			isCatched = true;
-		}
-
-		BOOST_CHECK(isCatched);
+		BOOST_CHECK_THROW(Solve4(a, 1, 2, 3, 4), std::invalid_argument);
 	}
 
 	BOOST_AUTO_TEST_CASE(may_have_not_real_roots)
 	{
-		bool isCatched = true;
-
-		try
-		{
-			Solve4(1, 2, 3, 4, 5);
-		}
-		catch (std::domain_error)
-		{
-			isCatched = true;
-		}
-
-		BOOST_CHECK(isCatched);
+		BOOST_CHECK_THROW(Solve4(1, 2, 3, 4, 5), std::domain_error);
 	}
 
 BOOST_AUTO_TEST_SUITE_END()

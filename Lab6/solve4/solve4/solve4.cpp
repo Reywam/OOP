@@ -26,7 +26,6 @@ EquationRoots Solve2(double a, double b, double c)
 {
 	EquationRoots solution;
 
-	solution.numRoots = 0;
 	auto d = (b * b) - (4 * a * c);
 
 	if (d == 0)
@@ -91,7 +90,7 @@ EquationRoots Solve3(double a, double b, double c)
 	return roots;
 }
 
-EquationRoots MergeResolventRoots(EquationRoots const &SquareEquation1, EquationRoots const &SquareEquation2)
+EquationRoots MergeRoots(EquationRoots const &SquareEquation1, EquationRoots const &SquareEquation2)
 {
 	EquationRoots resolvent;
 
@@ -121,30 +120,31 @@ EquationRoots Solve4(double a, double b, double c, double d, double e)
 	}
 
 	ToCanonicalForm(a, b, c, d , e);
-	double alpha = -c;
-	double beta = (b * d) - (4 * e);
-	double gamma = 4 * (c * e) - (b * b * e) - (d * d);
 
-	EquationRoots resolvent = Solve3(alpha, beta, gamma);
+	double n = -c;
+	double p = (b * d) - (4 * e);
+	double q = 4 * (c * e) - (b * b * e) - (d * d);
 
-	alpha = *std::max_element(std::begin(resolvent.root), std::end(resolvent.root));
-	beta = sqrt((b * b / 4) - (c - alpha));
-	gamma = sqrt(abs((alpha * alpha / 4) - e));
+	EquationRoots resolvent = Solve3(n, p, q);
 
-	if (((b * alpha / 2) - d) < 0)
+	n = *max_element(begin(resolvent.root), end(resolvent.root));
+	p = sqrt((b * b / 4) - (c - n));
+	q = sqrt(abs((n * n / 4) - e));
+
+	if (((b * n / 2) - d) < 0)
 	{
-		gamma *= -1;
+		q *= -1;
 	}
 
-	EquationRoots resolvent1 = Solve2(1, b / 2 + beta, alpha / 2 + gamma);
-	EquationRoots resolvent2 = Solve2(1, b / 2 - beta, alpha / 2 - gamma);
+	EquationRoots SquareEquation1 = Solve2(1, b / 2 + p, n / 2 + q);
+	EquationRoots SquareEquation2 = Solve2(1, b / 2 - p, n / 2 - q);
 
-	if ((resolvent1.numRoots == 0) && (resolvent2.numRoots == 0))
+	if ((SquareEquation1.numRoots == 0) && (SquareEquation2.numRoots == 0))
 	{
 		throw std::domain_error("Equation does not have any real roots.");
 	}
 
-	resolvent = MergeResolventRoots(resolvent1, resolvent2);
+	resolvent = MergeRoots(SquareEquation1, SquareEquation2);
 
 	return resolvent;
 }
