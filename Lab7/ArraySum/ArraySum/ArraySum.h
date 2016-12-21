@@ -2,9 +2,6 @@
 #include <vector>
 
 template <typename T>
-T ArraySum(std::vector<T> const& arr);
-
-template <typename T>
 T ArraySum(std::vector<T> const& arr)
 {
 	T sum = T();
@@ -19,5 +16,3 @@ T ArraySum(std::vector<T> const& arr)
 
 	return sum;
 }
-
-std::string ArraySum(std::vector<char> const& arr);

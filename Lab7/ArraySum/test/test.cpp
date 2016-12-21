@@ -31,8 +31,8 @@ BOOST_AUTO_TEST_SUITE(ArraySum_function)
 	BOOST_AUTO_TEST_CASE(can_calculate_sum_of_chars)
 	{
 		std::vector<char> testData = {'a', 'b', 'c'};
-		std::string sum = ArraySum(testData);
-		std::string expectedSum = "abc";
+		char sum = ArraySum(testData);
+		char expectedSum = '&';
 
 		BOOST_CHECK_EQUAL(sum, expectedSum);
 	}
