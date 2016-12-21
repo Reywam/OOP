@@ -11,12 +11,13 @@ T ArraySum(std::vector<T> const& arr)
 
 	if (!arr.empty())
 	{
-		for (auto element : arr)
+		for (auto &element : arr)
 		{
-			sum = sum + element;
+			sum += element;
 		}
 	}
 
 	return sum;
 }
 
+std::string ArraySum(std::vector<char> const& arr);
