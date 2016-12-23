@@ -2,66 +2,89 @@
 #include "CStringStack.h"
 #include <iostream>
 #include <string>
+#include <exception>
 #include <memory>
 
 using namespace std;
 
-bool CStringStack::Pop()
+CStringStack::CStringStack()
 {
-	if (!m_size == 0)
-	{
-		shared_ptr<Node> tmpNode = m_lastElement;
 
-		m_lastElement = m_lastElement->prevElement;
-		tmpNode.reset();
-
-		--m_size;
-		return true;
-	}
-	else
-	{
-		throw domain_error("Can't pop element from empty stack.");
-	}
 }
 
-string CStringStack::GetElement()const
+CStringStack::~CStringStack() noexcept
 {
-	if (!m_size == 0)
+	std::shared_ptr<Node> curr = m_lastElement;
+
+	while (curr != nullptr)
 	{
-		return m_lastElement->element;
+		std::shared_ptr<Node> tmpNode = curr->prevElement;
+
+		curr.reset();
+
+		curr = tmpNode;
 	}
-	else
-	{
-		throw domain_error("Can't get element from empty stack.");
-	}
+
+	m_lastElement = nullptr;
 }
 
-bool CStringStack::Push(const string &element)
+void CStringStack::Push(const std::string &string)
 {
-	if (m_stack == nullptr)
+	try
 	{
 		shared_ptr<Node> newElement(new Node);
 
-		newElement->element = element;
-		newElement->prevElement = m_lastElement;
+		newElement->element = string;
 
-		m_stack = newElement;
-		m_lastElement = m_stack;
+		if (m_lastElement != nullptr)
+		{
+			newElement->prevElement = m_lastElement;
+		}
+
+		m_lastElement = newElement;
+
+	}
+	catch (...)
+	{
+		cout << "Error: " << "Not enough memory to push new element." << endl;
 	}
 
-	shared_ptr<Node> newElement(new Node);
-
-	newElement->element = element;
-	newElement->prevElement = m_lastElement;
-
-	m_lastElement = newElement;
-
 	++m_size;
-
-	return true;
 }
 
-bool CStringStack::IsEmpty()
+void CStringStack::Pop()
+{
+	try
+	{
+		shared_ptr<Node> tmpNode = m_lastElement;
+
+		if (IsEmpty())
+		{
+			throw std::domain_error("Can't pop elements from empty stack.");
+		}
+
+		m_lastElement = m_lastElement->prevElement;
+
+		tmpNode.reset();
+	}
+	catch (std::bad_alloc)
+	{
+		cout << "Error: " << "Not enough memory to push new element." << endl;
+	}
+
+	--m_size;
+}
+
+string CStringStack::GetLastElement()const
+{
+	if (IsEmpty())
+	{
+		throw std::domain_error("Can't get last element from empty stack.");
+	}
+	return m_lastElement->element;
+}
+
+bool CStringStack::IsEmpty()const
 {
 	return(m_size == 0);
 }

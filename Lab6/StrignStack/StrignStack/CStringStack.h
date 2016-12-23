@@ -5,29 +5,15 @@
 class CStringStack
 {
 public:
-	CStringStack()
-	{
-		m_stack = nullptr;
-		m_lastElement = m_stack;
-	}
+	CStringStack();
+	~CStringStack() noexcept;
 
-	~CStringStack()
-	{
-		if (m_size != 0)
-		{
-			while (m_lastElement->prevElement != m_stack)
-			{
-				std::shared_ptr<Node> tmpNode = m_lastElement;
-				m_lastElement = m_lastElement->prevElement;
-				tmpNode.reset();
-			}
-		}
-	}
+	void Push(const std::string &string);
+	void Pop();
 
-	bool Push(const std::string &string);
-	bool Pop();
-	std::string GetElement()const;
-	bool IsEmpty();
+	std::string GetLastElement()const;
+
+	bool IsEmpty()const;
 
 private:
 	struct Node
@@ -36,7 +22,6 @@ private:
 		std::shared_ptr<Node> prevElement = nullptr;
 	};
 
-	std::shared_ptr<Node> m_stack;
 	std::shared_ptr<Node> m_lastElement;
 
 	int m_size = 0;

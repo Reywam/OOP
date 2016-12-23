@@ -7,8 +7,8 @@ int main()
 	CStringStack stack;
 	stack.Push("A");
 
-	std::cout << stack.GetElement() << std::endl; 
+	std::cout << stack.GetLastElement() << std::endl; 
 	stack.Pop();
-	std::cout << stack.GetElement() << std::endl;
+	std::cout << stack.GetLastElement() << std::endl;
     return 0;
 }
