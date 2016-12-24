@@ -12,6 +12,7 @@ public:
 	void Pop();
 
 	std::string GetLastElement()const;
+	int GetSize()const;
 
 	bool IsEmpty()const;
 

@@ -20,6 +20,17 @@ BOOST_AUTO_TEST_SUITE(class_StringStack)
 		BOOST_CHECK(!stack.IsEmpty());
 	}
 
+	BOOST_AUTO_TEST_CASE(can_get_stack_size)
+	{
+		CStringStack stack;
+		int expectedSize = 2;
+
+		stack.Push("1");
+		stack.Push("2");
+
+		BOOST_CHECK_EQUAL(stack.GetSize(), expectedSize);
+	}
+
 	BOOST_AUTO_TEST_CASE(can_pop_elements)
 	{
 		CStringStack stack;
