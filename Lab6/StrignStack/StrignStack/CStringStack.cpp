@@ -12,20 +12,12 @@ CStringStack::CStringStack()
 
 }
 
-CStringStack::~CStringStack() noexcept
+CStringStack::~CStringStack()
 {
-	std::shared_ptr<Node> curr = m_lastElement;
-
-	while (curr != nullptr)
+	while (m_lastElement != nullptr)
 	{
-		std::shared_ptr<Node> tmpNode = curr->prevElement;
-
-		curr.reset();
-
-		curr = tmpNode;
+		Pop();
 	}
-
-	m_lastElement = nullptr;
 }
 
 void CStringStack::Push(const std::string &string)
