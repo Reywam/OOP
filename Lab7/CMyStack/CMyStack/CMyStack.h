@@ -91,7 +91,7 @@ public:
 
 	CMyStack& operator=(CMyStack &&stack)
 	{
-		Copy(stack.m_lastElement);
+		Move(stack.m_lastElement);
 		stack.Clear();
 
 		return *this;
