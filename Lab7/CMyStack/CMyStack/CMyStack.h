@@ -24,7 +24,7 @@ public:
 
 	void Push(T const &element)
 	{
-		std::shared_ptr<Node> newElement(new Node);
+		auto newElement = std::make_shared<Node>();
 
 		newElement->element = element;
 
