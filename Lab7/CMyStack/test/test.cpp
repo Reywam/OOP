@@ -78,7 +78,7 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 
 			for (size_t i = 0; i < currentSize; ++i)
 			{
-				intStack.Push(i);
+				intStack.Push((int)i);
 			}
 			BOOST_CHECK_EQUAL(intStack.GetSize(), currentSize);
 
@@ -99,7 +99,7 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 		{
 			for (size_t i = 0; i < 10; ++i)
 			{
-				intStack.Push(i);
+				intStack.Push((int)i);
 			}
 
 			CMyStack<int> newIntStack(intStack);
@@ -118,7 +118,7 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 		{
 			for (size_t i = 0; i < 10; ++i)
 			{
-				intStack.Push(i);
+				intStack.Push((int)i);
 			}
 
 			CMyStack<int> newIntStack(std::move(intStack));
