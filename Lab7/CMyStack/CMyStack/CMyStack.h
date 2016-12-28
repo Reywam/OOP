@@ -40,16 +40,12 @@ public:
 
 	void Pop()
 	{
-		std::shared_ptr<Node> tmpNode = m_lastElement;
-
 		if (IsEmpty())
 		{
 			throw std::domain_error("Can't pop element from empty stack.");
 		}
 
 		m_lastElement = m_lastElement->prevElement;
-
-		tmpNode.reset();
 
 		--m_size;
 	}
@@ -72,7 +68,7 @@ public:
 		return(m_lastElement->element);
 	}
 
-	int GetSize()const
+	size_t GetSize()const
 	{
 		return(m_size);
 	}
@@ -124,5 +120,5 @@ private:
 	}
 
 	std::shared_ptr<Node> m_lastElement = nullptr;
-	int m_size = 0;
+	size_t m_size = 0;
 };

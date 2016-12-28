@@ -43,10 +43,10 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 		BOOST_AUTO_TEST_CASE(can_get_size_of_stack)
 		{
 			intStack.Push(1);
-			BOOST_CHECK_EQUAL(intStack.GetSize(), 1);
+			BOOST_CHECK_EQUAL(intStack.GetSize(), (size_t)1);
 
 			stringStack.Push("18900");
-			BOOST_CHECK_EQUAL(stringStack.GetSize(), 1);
+			BOOST_CHECK_EQUAL(stringStack.GetSize(), (size_t)1);
 		}
 
 		BOOST_AUTO_TEST_CASE(can_pop_elements)
@@ -73,10 +73,10 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 
 		BOOST_AUTO_TEST_CASE(can_delete_all_elements_in_stack)
 		{
-			int currentSize = 3;
-			int expectedSize = 0;
+			size_t currentSize = 3;
+			size_t expectedSize = 0;
 
-			for (auto i = 0; i < currentSize; ++i)
+			for (size_t i = 0; i < currentSize; ++i)
 			{
 				intStack.Push(i);
 			}
@@ -85,7 +85,7 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 			intStack.Clear();
 			BOOST_CHECK_EQUAL(intStack.GetSize(), expectedSize);
 
-			for (auto i = 0; i < currentSize; ++i)
+			for (size_t i = 0; i < currentSize; ++i)
 			{
 				stringStack.Push("42");
 			}
