@@ -80,18 +80,54 @@ public:
 
 	CMyStack &operator =(CMyStack<T> const &stack)
 	{
-		Copy(stack.m_lastElement);
+		if (*this != stack)
+		{
+			Copy(stack.m_lastElement);
+		}
 
 		return *this;
 	}
 
-	CMyStack& operator=(CMyStack &&stack)
+	CMyStack &operator=(CMyStack<T> &&stack)
 	{
-		Move(stack.m_lastElement);
-		stack.Clear();
+		if (*this != stack)
+		{
+			Move(stack.m_lastElement);
+			stack.Clear();
+		}
 
 		return *this;
 	}
+
+	bool CMyStack<T>::operator ==(CMyStack const &stack)const
+	{
+		if (GetSize() != stack.GetSize())
+		{
+			return false;
+		}
+
+		auto tmpNode1 = m_lastElement;
+		auto tmpNode2 = stack.m_lastElement;
+
+		while (tmpNode1 != nullptr)
+		{
+			if (tmpNode1->element != tmpNode2->element)
+			{
+				return false;
+			}
+
+			tmpNode1 = tmpNode1->prevElement;
+			tmpNode2 = tmpNode2->prevElement;
+		}
+
+		return true;
+	}
+	
+	bool CMyStack<T>::operator !=(CMyStack const &stack)const
+	{
+		return !(*this == stack);
+	}
+
 private:
 	struct Node
 	{
