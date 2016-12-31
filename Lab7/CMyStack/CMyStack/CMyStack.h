@@ -42,7 +42,7 @@ public:
 	{
 		if (IsEmpty())
 		{
-			throw std::domain_error("Can't pop element from empty stack.");
+			throw std::underflow_error("Can't pop element from empty stack.");
 		}
 
 		m_lastElement = m_lastElement->prevElement;
@@ -62,7 +62,7 @@ public:
 	{
 		if (IsEmpty())
 		{
-			throw std::domain_error("Can't get last element from empty stack.");
+			throw std::underflow_error("Can't get last element from empty stack.");
 		}
 
 		return(m_lastElement->element);
@@ -82,7 +82,7 @@ public:
 	{
 		if (*this != stack)
 		{
-			Copy(stack.m_lastElement);
+			Copy(stack);
 		}
 
 		return *this;
@@ -92,8 +92,7 @@ public:
 	{
 		if (*this != stack)
 		{
-			Move(stack.m_lastElement);
-			stack.Clear();
+			Move(stack);
 		}
 
 		return *this;
@@ -134,24 +133,43 @@ private:
 		T element = T();
 		std::shared_ptr<Node> prevElement = nullptr;
 	};
-
-	void Copy(std::shared_ptr<Node> lastElement)
+	 
+	void Copy(CMyStack const &stack)
 	{
-		if (lastElement != nullptr)
+		Clear();
+		auto tmpNode = stack.m_lastElement;
+
+		auto seed = std::make_shared<Node>();
+		auto prevElement = seed;
+
+		seed->element = tmpNode->element;
+
+		tmpNode = tmpNode->prevElement;
+
+		while (tmpNode != nullptr)
 		{
-			Copy(lastElement->prevElement);
-			Push(lastElement->element);
+			auto tmpNode2 = std::make_shared<Node>();
+			tmpNode2->element = tmpNode->element;
+
+			prevElement->prevElement = tmpNode2;
+			prevElement = tmpNode2;
+
+			tmpNode = tmpNode->prevElement;
 		}
+
+		m_size = stack.GetSize();
+		m_lastElement = seed;
 	}
 
-	void Move(std::shared_ptr<Node> lastElement)
+	void Move(CMyStack &stack)
 	{
-		if (lastElement != nullptr)
+		if (*this != stack)
 		{
-			Move(lastElement->prevElement);
+			m_lastElement = stack.m_lastElement;
+			m_size = stack.GetSize();
 
-			auto copy = std::move(lastElement->element);
-			Push(copy);
+			stack.m_lastElement = nullptr;
+			stack.m_size = 0;
 		}
 	}
 
