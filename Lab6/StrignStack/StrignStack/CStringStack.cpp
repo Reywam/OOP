@@ -1,16 +1,9 @@
 #include "stdafx.h"
 #include "CStringStack.h"
-#include <iostream>
 #include <string>
-#include <exception>
 #include <memory>
 
 using namespace std;
-
-CStringStack::CStringStack()
-{
-
-}
 
 CStringStack::~CStringStack()
 {
@@ -22,7 +15,7 @@ CStringStack::~CStringStack()
 
 void CStringStack::Push(const std::string &string)
 {
-	shared_ptr<Node> newElement(new Node);
+	auto newElement = std::make_shared<Node>();
 	
 	newElement->element = string;
 
@@ -38,16 +31,12 @@ void CStringStack::Push(const std::string &string)
 
 void CStringStack::Pop()
 {
-	shared_ptr<Node> tmpNode = m_lastElement;
-
 	if (IsEmpty())
 	{
-		throw std::domain_error("Can't pop element from empty stack.");
+		throw std::underflow_error("Can't pop element from empty stack.");
 	}
 
 	m_lastElement = m_lastElement->prevElement;
-
-	tmpNode.reset();
 
 	--m_size;
 }
@@ -56,13 +45,13 @@ string CStringStack::GetLastElement()const
 {
 	if (IsEmpty())
 	{
-		throw std::domain_error("Can't get last element from empty stack.");
+		throw std::underflow_error("Can't get last element from empty stack.");
 	}
 
 	return m_lastElement->element;
 }
 
-int CStringStack::GetSize()const
+size_t CStringStack::GetSize()const
 {
 	return m_size;
 }

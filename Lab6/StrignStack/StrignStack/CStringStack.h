@@ -5,14 +5,13 @@
 class CStringStack
 {
 public:
-	CStringStack();
-	~CStringStack() noexcept;
+	~CStringStack();
 
 	void Push(const std::string &string);
 	void Pop();
 
 	std::string GetLastElement()const;
-	int GetSize()const;
+	size_t GetSize()const;
 
 	bool IsEmpty()const;
 
@@ -25,5 +24,5 @@ private:
 
 	std::shared_ptr<Node> m_lastElement;
 
-	int m_size = 0;
+	size_t m_size = 0;
 };

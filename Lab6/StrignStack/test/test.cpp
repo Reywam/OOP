@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_SUITE(class_StringStack)
 	BOOST_AUTO_TEST_CASE(can_get_stack_size)
 	{
 		CStringStack stack;
-		int expectedSize = 2;
+		size_t expectedSize = 2;
 
 		stack.Push("1");
 		stack.Push("2");
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_SUITE(class_StringStack)
 	{
 		CStringStack stack;
 
-		BOOST_CHECK_THROW(stack.Pop(), std::domain_error);
+		BOOST_CHECK_THROW(stack.Pop(), std::underflow_error);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_get_last_element)
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_SUITE(class_StringStack)
 	BOOST_AUTO_TEST_CASE(can_not_get_last_element_when_stack_is_empty)
 	{
 		CStringStack stack;
-		BOOST_CHECK_THROW(stack.GetLastElement(), std::domain_error);
+		BOOST_CHECK_THROW(stack.GetLastElement(), std::underflow_error);
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
