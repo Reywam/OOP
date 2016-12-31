@@ -140,7 +140,7 @@ private:
 		auto tmpNode = stack.m_lastElement;
 
 		auto seed = std::make_shared<Node>();
-		auto prevElement = seed;
+		auto prevNode = seed;
 
 		seed->element = tmpNode->element;
 
@@ -148,11 +148,11 @@ private:
 
 		while (tmpNode != nullptr)
 		{
-			auto tmpNode2 = std::make_shared<Node>();
-			tmpNode2->element = tmpNode->element;
+			auto newNode = std::make_shared<Node>();
+			newNode->element = tmpNode->element;
 
-			prevElement->prevElement = tmpNode2;
-			prevElement = tmpNode2;
+			prevNode->prevElement = newNode;
+			prevNode = newNode;
 
 			tmpNode = tmpNode->prevElement;
 		}
