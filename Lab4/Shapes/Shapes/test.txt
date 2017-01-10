@@ -1,0 +1,4 @@
+circle 0 0 12 #ffffff #ababab
+rectangle 2 1 20 30 #aaaaaa #ababab
+triangle 0 0 0 4 2 0 #bababa #cecece
+line 0 0 0 1 #abcabc
