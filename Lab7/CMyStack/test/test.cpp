@@ -127,15 +127,21 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 				stringStack.Push(std::to_string(i));
 			}
 
-			CMyStack<int> newIntStack(intStack);
+			CMyStack<int> newIntStack1(intStack);
+			CMyStack<int> newIntStack2 = intStack;
 
-			BOOST_CHECK_EQUAL(newIntStack.GetSize(), intStack.GetSize());
-			BOOST_CHECK(newIntStack == intStack);
+			BOOST_CHECK_EQUAL(newIntStack1.GetSize(), intStack.GetSize());
+			BOOST_CHECK_EQUAL(newIntStack2.GetSize(), intStack.GetSize());
+			BOOST_CHECK(newIntStack1 == intStack);
+			BOOST_CHECK(newIntStack2 == intStack);
 
-			CMyStack<std::string> newStringStack(stringStack);
+			CMyStack<std::string> newStringStack1(stringStack);
+			CMyStack<std::string> newStringStack2 = stringStack;
 
-			BOOST_CHECK_EQUAL(newStringStack.GetSize(), stringStack.GetSize());
-			BOOST_CHECK(newStringStack == stringStack);
+			BOOST_CHECK_EQUAL(newStringStack1.GetSize(), stringStack.GetSize());
+			BOOST_CHECK_EQUAL(newStringStack2.GetSize(), stringStack.GetSize());
+			BOOST_CHECK(newStringStack1 == stringStack);
+			BOOST_CHECK(newStringStack2 == stringStack);
 		}
 
 		BOOST_AUTO_TEST_CASE(can_not_be_copied_by_itself)
@@ -155,8 +161,6 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 
 			BOOST_CHECK_EQUAL(intStack.GetSize(), (size_t)10);
 			BOOST_CHECK(intStack == prevIntStackState);
-
-
 
 			CMyStack<std::string> prevStringStackState = stringStack;
 			BOOST_CHECK(prevStringStackState == stringStack);
@@ -180,7 +184,27 @@ BOOST_FIXTURE_TEST_SUITE(Stack, EmptyStack)
 			CMyStack<int> prevIntStackState = intStack;
 			CMyStack<std::string> prevStringStackState = stringStack;
 
-			CMyStack<int> newIntStack(std::move(intStack));
+			CMyStack<int> newIntStack1(std::move(intStack));
+			BOOST_CHECK(intStack.IsEmpty());
+			BOOST_CHECK(newIntStack1 == prevIntStackState);
+
+			CMyStack<std::string> newStringStack(std::move(stringStack));
+			BOOST_CHECK(stringStack.IsEmpty());
+			BOOST_CHECK(newStringStack == prevStringStackState);
+		}
+
+		BOOST_AUTO_TEST_CASE(can_be_moved_via_assignment_operator)
+		{
+			for (size_t i = 0; i < 40; ++i)
+			{
+				intStack.Push((int)i);
+				stringStack.Push(std::to_string(i));
+			}
+
+			CMyStack<int> prevIntStackState = intStack;
+			CMyStack<std::string> prevStringStackState = stringStack;
+
+			CMyStack<int> newIntStack = (std::move(intStack));
 			BOOST_CHECK(intStack.IsEmpty());
 			BOOST_CHECK(newIntStack == prevIntStackState);
 

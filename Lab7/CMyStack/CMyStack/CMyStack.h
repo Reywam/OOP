@@ -26,11 +26,11 @@ public:
 	{
 		auto newElement = std::make_shared<Node>();
 
-		newElement->element = element;
+		newElement->data = element;
 
 		if (m_lastElement != nullptr)
 		{
-			newElement->prevElement = m_lastElement;
+			newElement->prevNode = m_lastElement;
 		}
 
 		m_lastElement = newElement;
@@ -45,7 +45,7 @@ public:
 			throw std::underflow_error("Can't pop element from empty stack.");
 		}
 
-		m_lastElement = m_lastElement->prevElement;
+		m_lastElement = m_lastElement->prevNode;
 
 		--m_size;
 	}
@@ -65,7 +65,7 @@ public:
 			throw std::underflow_error("Can't get last element from empty stack.");
 		}
 
-		return(m_lastElement->element);
+		return(m_lastElement->data);
 	}
 
 	size_t GetSize()const
@@ -92,7 +92,7 @@ public:
 	{
 		if (*this != stack)
 		{
-			Move(stack);
+			Move(std::move(stack));
 		}
 
 		return *this;
@@ -110,13 +110,13 @@ public:
 
 		while (tmpNode1 != nullptr)
 		{
-			if (tmpNode1->element != tmpNode2->element)
+			if (tmpNode1->data != tmpNode2->data)
 			{
 				return false;
 			}
 
-			tmpNode1 = tmpNode1->prevElement;
-			tmpNode2 = tmpNode2->prevElement;
+			tmpNode1 = tmpNode1->prevNode;
+			tmpNode2 = tmpNode2->prevNode;
 		}
 
 		return true;
@@ -130,38 +130,37 @@ public:
 private:
 	struct Node
 	{
-		T element = T();
-		std::shared_ptr<Node> prevElement = nullptr;
+		T data = T();
+		std::shared_ptr<Node> prevNode = nullptr;
 	};
 	 
 	void Copy(CMyStack const &stack)
 	{
-		Clear();
 		auto tmpNode = stack.m_lastElement;
 
 		auto seed = std::make_shared<Node>();
 		auto prevNode = seed;
 
-		seed->element = tmpNode->element;
+		seed->data = tmpNode->data;
 
-		tmpNode = tmpNode->prevElement;
+		tmpNode = tmpNode->prevNode;
 
 		while (tmpNode != nullptr)
 		{
 			auto newNode = std::make_shared<Node>();
-			newNode->element = tmpNode->element;
+			newNode->data = tmpNode->data;
 
-			prevNode->prevElement = newNode;
+			prevNode->prevNode = newNode;
 			prevNode = newNode;
 
-			tmpNode = tmpNode->prevElement;
+			tmpNode = tmpNode->prevNode;
 		}
 
 		m_size = stack.GetSize();
 		m_lastElement = seed;
 	}
 
-	void Move(CMyStack &stack)
+	void Move(CMyStack &&stack)
 	{
 		if (*this != stack)
 		{
