@@ -53,9 +53,11 @@ void CRemoteControl::PrintInfo(std::ostream &output)
 
 vector<string> CRemoteControl::GetShapeParameters(std::string const &paramsLine)const
 {
-	vector<string> params;
+	vector<std::string> params;
 
-	boost::tokenizer<> tokenizer(paramsLine);
+	const boost::char_separator<char> separator(" ");
+	boost::tokenizer<boost::char_separator<char>> tokenizer(paramsLine, separator);
+
 	copy(tokenizer.begin(), tokenizer.end(), back_inserter(params));
 
 	return params;
@@ -138,6 +140,11 @@ bool CRemoteControl::CreateCircle(std::istream &args)
 		center.y = boost::lexical_cast<double>(parameters[1]);
 
 		radius = boost::lexical_cast<double>(parameters[2]);
+		if (radius < 0)
+		{
+			m_output << "Circle radius can't be negative value." << endl;
+			return true;
+		}
 	}
 	catch (boost::bad_lexical_cast const &e)
 	{
@@ -211,6 +218,11 @@ bool CRemoteControl::CreateRectangle(std::istream &args)
 		leftTop.y = boost::lexical_cast<double>(parameters[1]);
 		width = boost::lexical_cast<double>(parameters[2]);
 		height= boost::lexical_cast<double>(parameters[3]);
+		if (width < 0 || height < 0)
+		{
+			m_output << "Width and height can't be negative value." << endl;
+			return true;
+		}
 	}
 	catch (boost::bad_lexical_cast const &e)
 	{

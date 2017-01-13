@@ -47,6 +47,6 @@ std::string CCircle::ToString()const
 	return m_name
 		+ " " + m_center.ToString()
 		+ " " + std::to_string(m_radius)
-		+ " #" + m_outlineColor
-		+ " #" + m_fillColor;
+		+ " " + m_outlineColor
+		+ " " + m_fillColor;
 }

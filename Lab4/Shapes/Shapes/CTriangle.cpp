@@ -37,8 +37,8 @@ std::string CTriangle::ToString()const
 		+ " " + m_vertex1.ToString() 
 		+ " " + m_vertex2.ToString() 
 		+ " " + m_vertex3.ToString()
-		+ " #" + m_outlineColor
-		+ " #" + m_fillColor);
+		+ " " + m_outlineColor
+		+ " " + m_fillColor);
 }
 
 std::string CTriangle::GetOutlineColor()const

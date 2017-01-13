@@ -56,8 +56,7 @@ std::string CRectangle::ToString()const
 		+ " " + m_leftTop.ToString()
 		+ " " + std::to_string(m_width)
 		+ " " + std::to_string(m_height)
-		+ " #" + m_outlineColor
-		+ " #" + m_fillColor
-
+		+ " " + m_outlineColor
+		+ " " + m_fillColor
 		);
 }
