@@ -9,7 +9,7 @@ CCircle::CCircle(CPoint center, double radius, std::string outlineColor, std::st
 	m_center = center;
 	m_radius = radius;
 	m_outlineColor = outlineColor;
-	m_fillColor = fillColor;
+	CSolidShape::SetFillColor(fillColor);
 }
 
 double CCircle::GetArea()const
@@ -29,7 +29,7 @@ std::string CCircle::GetOutlineColor()const
 
 std::string CCircle::GetFillColor()const
 {
-	return m_fillColor;
+	return CSolidShape::GetFillColor();
 }
 
 CPoint CCircle::GetCenter()const
@@ -48,5 +48,5 @@ std::string CCircle::ToString()const
 		+ " " + m_center.ToString()
 		+ " " + std::to_string(m_radius)
 		+ " " + m_outlineColor
-		+ " " + m_fillColor;
+		+ " " + GetFillColor();
 }

@@ -173,6 +173,7 @@
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CRemoteControl.h" />
+    <ClInclude Include="CSolidShape.h" />
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CCircle.h" />
     <ClInclude Include="ISolidShape.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CRemoteControl.cpp" />
+    <ClCompile Include="CSolidShape.cpp" />
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
