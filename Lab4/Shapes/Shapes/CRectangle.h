@@ -6,7 +6,7 @@ class CRectangle final: public ISolidShape
 {
 public:
 	CRectangle(CPoint leftTopPoint, double width, double height, std::string outlineColor, std::string fillColor);
-	~CRectangle() = default;
+	virtual ~CRectangle() = default;
 
 	double GetArea()const;
 	double GetPerimeter()const;

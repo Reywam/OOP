@@ -272,7 +272,6 @@ BOOST_FIXTURE_TEST_SUITE(Remote_Control, RemoteControlFixture)
 			"Usage triangle <x1> <y1> <x2> <y2> <x3> <y3> <outlineColor> <fillColor>\n");
 		VerifyCommandHandling("triangle 42 42", "Invalid parameters count.\n"
 			"Usage triangle <x1> <y1> <x2> <y2> <x3> <y3> <outlineColor> <fillColor>\n");
-		
 	}
 
 	BOOST_AUTO_TEST_CASE(can_handle_correct_rectangle_command)

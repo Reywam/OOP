@@ -7,7 +7,7 @@ class CTriangle final: public ISolidShape
 {
 public:
 	CTriangle(CPoint vertex1, CPoint vertex2, CPoint vertex3, std::string outlineColor, std::string fillColor);
-	~CTriangle() = default;
+	virtual ~CTriangle() = default;
 
 	double GetArea()const;
 	double GetPerimeter()const;
