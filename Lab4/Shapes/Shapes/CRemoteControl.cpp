@@ -43,11 +43,15 @@ void CRemoteControl::PrintInfo(std::ostream &output)
 
 		output << "Shape with max area: " << endl;
 		output << (*shapeWithMaxArea)->ToString() << endl;
+		output << "Area: " << (*shapeWithMaxArea)->GetArea() << endl;
+		output << "Perimeter: " << (*shapeWithMaxArea)->GetPerimeter() << endl;
 
 		output << endl;
 
 		output << "Shape with min perimeter: " << endl;
 		output << (*shapeWithMinPerimeter)->ToString() << endl;
+		output << "Area: " << (*shapeWithMinPerimeter)->GetArea() << endl;
+		output << "Perimeter: " << (*shapeWithMinPerimeter)->GetPerimeter() << endl;
 	}
 }
 
