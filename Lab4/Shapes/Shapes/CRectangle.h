@@ -1,8 +1,9 @@
 #pragma once
 #include "CSolidShape.h"
+#include "CShape.h"
 #include "CPoint.h"
 
-class CRectangle final: public CSolidShape
+class CRectangle final: public CSolidShape, public CShape
 {
 public:
 	CRectangle(CPoint leftTopPoint, double width, double height, std::string outlineColor, std::string fillColor);
@@ -25,5 +26,4 @@ private:
 	CPoint m_leftTop;
 	double m_width;
 	double m_height;
-	std::string m_outlineColor;
 };

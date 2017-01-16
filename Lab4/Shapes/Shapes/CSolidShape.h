@@ -5,7 +5,6 @@ class CSolidShape : public ISolidShape
 {
 public:
 	virtual std::string GetFillColor()const;
-	void SetFillColor(std::string color);
-private:
+protected:
 	std::string m_fillColor;
 };

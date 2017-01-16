@@ -7,7 +7,7 @@ CRectangle::CRectangle(CPoint leftTopPoint, double width, double height, std::st
 	m_width = width;
 	m_height = height;
 	m_outlineColor = outlineColor;
-	CSolidShape::SetFillColor(fillColor);
+	m_fillColor = fillColor;
 }
 
 double CRectangle::GetArea()const
@@ -57,6 +57,6 @@ std::string CRectangle::ToString()const
 		+ " " + std::to_string(m_width)
 		+ " " + std::to_string(m_height)
 		+ " " + m_outlineColor
-		+ " " + CSolidShape::GetFillColor()
+		+ " " + m_fillColor
 		);
 }

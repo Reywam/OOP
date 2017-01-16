@@ -1,8 +1,8 @@
 #pragma once
-#include "IShape.h"
+#include "CShape.h"
 #include "CPoint.h"
 
-class CLineSegment final: public IShape
+class CLineSegment final: public CShape
 {
 public:
 	CLineSegment() = default;
@@ -23,7 +23,6 @@ public:
 	std::string GetOutlineColor()const;
 private:
 	std::string m_name = "line segment";
-	std::string m_outlineColor;
 
 	CPoint m_startPoint;
 	CPoint m_endPoint;

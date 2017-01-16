@@ -2,8 +2,7 @@
 #include "stdafx.h"
 #include <boost/noncopyable.hpp>
 #include <sstream>
-
-#include "IShape.h"
+#include "CShape.h"
 
 class CRemoteControl : boost::noncopyable
 {
@@ -20,7 +19,7 @@ private:
 private:
 	typedef std::map<std::string, std::function<bool(std::istream & args) >> ActionMap;
 
-	std::vector<std::shared_ptr<IShape>> m_shapes;
+	std::vector<std::shared_ptr<CShape>> m_shapes;
 	std::istream &m_input;
 	std::ostream &m_output;
 

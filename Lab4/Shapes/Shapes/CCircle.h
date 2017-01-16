@@ -1,8 +1,9 @@
 #pragma once
 #include "CSolidShape.h"
+#include "CShape.h"
 #include "CPoint.h"
 
-class CCircle final : public CSolidShape
+class CCircle final : public CSolidShape, public CShape
 {
 public:
 	CCircle(CPoint center, double radius, std::string outlineColor, std::string fillColor);
@@ -22,6 +23,4 @@ private:
 
 	CPoint m_center;
 	double m_radius;
-
-	std::string m_outlineColor;
 };

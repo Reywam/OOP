@@ -10,7 +10,7 @@ CTriangle::CTriangle(CPoint vertex1, CPoint vertex2, CPoint vertex3, std::string
 	m_vertex3 = vertex3;
 
 	m_outlineColor = outlineColor;
-	CSolidShape::SetFillColor(fillColor);
+	m_fillColor = fillColor;
 }
 
 double CTriangle::GetPerimeter()const
@@ -38,7 +38,7 @@ std::string CTriangle::ToString()const
 		+ " " + m_vertex2.ToString() 
 		+ " " + m_vertex3.ToString()
 		+ " " + m_outlineColor
-		+ " " + CSolidShape::GetFillColor());
+		+ " " + m_fillColor);
 }
 
 std::string CTriangle::GetOutlineColor()const

@@ -23,10 +23,10 @@ double CLineSegment::GetPerimeter()const
 
 std::string CLineSegment::ToString()const
 {
-	return (m_name + " " + m_startPoint.ToString() + " " + m_endPoint.ToString() + " " + m_outlineColor);
+	return (m_name + " " + m_startPoint.ToString() + " " + m_endPoint.ToString() + " " + CShape::m_outlineColor);
 }
 
 std::string CLineSegment::GetOutlineColor()const
 {
-	return m_outlineColor;
+	return CShape::m_outlineColor;
 }

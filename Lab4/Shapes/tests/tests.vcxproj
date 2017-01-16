@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -170,6 +170,7 @@
     <ClInclude Include="..\Shapes\CPoint.h" />
     <ClInclude Include="..\Shapes\CRectangle.h" />
     <ClInclude Include="..\Shapes\CRemoteControl.h" />
+    <ClInclude Include="..\Shapes\CShape.h" />
     <ClInclude Include="..\Shapes\CSolidShape.h" />
     <ClInclude Include="..\Shapes\CTriangle.h" />
     <ClInclude Include="stdafx.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="..\Shapes\CPoint.cpp" />
     <ClCompile Include="..\Shapes\CRectangle.cpp" />
     <ClCompile Include="..\Shapes\CRemoteControl.cpp" />
+    <ClCompile Include="..\Shapes\CShape.cpp" />
     <ClCompile Include="..\Shapes\CSolidShape.cpp" />
     <ClCompile Include="..\Shapes\CTriangle.cpp" />
     <ClCompile Include="stdafx.cpp">
