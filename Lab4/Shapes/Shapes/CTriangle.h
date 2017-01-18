@@ -4,7 +4,7 @@
 #include "CPoint.h"
 #include "CLineSegment.h"
 
-class CTriangle final: public CSolidShape, public CShape
+class CTriangle final: public CSolidShape
 {
 public:
 	CTriangle(CPoint vertex1, CPoint vertex2, CPoint vertex3, std::string outlineColor, std::string fillColor);

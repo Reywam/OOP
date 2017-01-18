@@ -4,7 +4,7 @@
 #include "CPoint.h"
 
 CTriangle::CTriangle(CPoint vertex1, CPoint vertex2, CPoint vertex3, std::string outlineColor, std::string fillColor)
-	:CShape(outlineColor), CSolidShape(fillColor)
+	:CSolidShape(outlineColor, fillColor)
 {
 	m_vertex1 = vertex1;
 	m_vertex2 = vertex2;
@@ -20,7 +20,7 @@ double CTriangle::GetPerimeter()const
 
 double CTriangle::GetArea()const
 {
-	auto area = (0.5 * fabs((m_vertex2.x - m_vertex1.x)
+	auto area = (0.5 * abs((m_vertex2.x - m_vertex1.x)
 		* (m_vertex3.y - m_vertex1.y)
 		- (m_vertex3.x - m_vertex1.x)
 		* (m_vertex2.y - m_vertex1.y)));
@@ -34,13 +34,13 @@ std::string CTriangle::ToString()const
 		+ " " + m_vertex1.ToString() 
 		+ " " + m_vertex2.ToString() 
 		+ " " + m_vertex3.ToString()
-		+ " " + CShape::GetOutlineColor()
+		+ " " + GetOutlineColor()
 		+ " " + CSolidShape::GetFillColor());
 }
 
 std::string CTriangle::GetOutlineColor()const
 {
-	return CShape::GetOutlineColor();
+	return CSolidShape::GetOutlineColor();
 }
 
 std::string CTriangle::GetFillColor()const

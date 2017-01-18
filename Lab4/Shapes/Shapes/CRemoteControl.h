@@ -19,7 +19,7 @@ private:
 private:
 	typedef std::map<std::string, std::function<bool(std::istream & args) >> ActionMap;
 
-	std::vector<std::shared_ptr<CShape>> m_shapes;
+	std::vector<std::shared_ptr<IShape>> m_shapes;
 	std::istream &m_input;
 	std::ostream &m_output;
 

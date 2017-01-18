@@ -3,7 +3,7 @@
 #include "CShape.h"
 #include "CPoint.h"
 
-class CCircle final : public CSolidShape, public CShape
+class CCircle final : public CSolidShape
 {
 public:
 	CCircle(CPoint center, double radius, std::string outlineColor, std::string fillColor);
@@ -12,9 +12,9 @@ public:
 	double GetArea()const;
 	double GetPerimeter()const;
 
-	std::string ToString()const;
-	std::string GetOutlineColor()const;
-	std::string GetFillColor()const;
+	std::string ToString()const override;
+	std::string GetOutlineColor()const override;
+	std::string GetFillColor()const override;
 
 	CPoint GetCenter()const;
 	double GetRadius()const;

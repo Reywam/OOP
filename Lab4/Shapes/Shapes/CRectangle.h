@@ -3,7 +3,7 @@
 #include "CShape.h"
 #include "CPoint.h"
 
-class CRectangle final: public CSolidShape, public CShape
+class CRectangle final: public CSolidShape
 {
 public:
 	CRectangle(CPoint leftTopPoint, double width, double height, std::string outlineColor, std::string fillColor);
