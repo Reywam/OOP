@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
 		cout << "Failed to open file: " << argv[1] << endl;
 		return 1;
 	}
-	vector<IShape> shapes;
 
 	CRemoteControl remoteControl(inputFile, cout);
 

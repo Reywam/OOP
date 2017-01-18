@@ -7,7 +7,7 @@ class CCircle final : public CSolidShape, public CShape
 {
 public:
 	CCircle(CPoint center, double radius, std::string outlineColor, std::string fillColor);
-	virtual ~CCircle() = default;
+	~CCircle() = default;
 
 	double GetArea()const;
 	double GetPerimeter()const;

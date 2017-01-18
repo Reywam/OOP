@@ -8,7 +8,7 @@ class CTriangle final: public CSolidShape, public CShape
 {
 public:
 	CTriangle(CPoint vertex1, CPoint vertex2, CPoint vertex3, std::string outlineColor, std::string fillColor);
-	virtual ~CTriangle() = default;
+	~CTriangle() = default;
 
 	double GetArea()const;
 	double GetPerimeter()const;
@@ -17,9 +17,9 @@ public:
 	std::string GetOutlineColor()const;
 	std::string GetFillColor()const;
 
-	CPoint GetVertex1();
-	CPoint GetVertex2();
-	CPoint GetVertex3();
+	CPoint GetVertex1()const;
+	CPoint GetVertex2()const;
+	CPoint GetVertex3()const;
 private:
 	std::string m_name = "triangle";
 

@@ -2,10 +2,11 @@
 #include "CLineSegment.h"
 
 CLineSegment::CLineSegment(CPoint startPoint, CPoint endPoint, std::string outlineColor)
+	:CShape(outlineColor)
 {
 	m_startPoint = startPoint;
 	m_endPoint = endPoint;
-	m_outlineColor = outlineColor;
+//	m_outlineColor = outlineColor;
 }
 
 CPoint CLineSegment::GetStartPoint()const
@@ -30,10 +31,10 @@ double CLineSegment::GetPerimeter()const
 
 std::string CLineSegment::ToString()const
 {
-	return (m_name + " " + m_startPoint.ToString() + " " + m_endPoint.ToString() + " " + CShape::m_outlineColor);
+	return (m_name + " " + m_startPoint.ToString() + " " + m_endPoint.ToString() + " " + CShape::GetOutlineColor());
 }
 
 std::string CLineSegment::GetOutlineColor()const
 {
-	return CShape::m_outlineColor;
+	return CShape::GetOutlineColor();
 }

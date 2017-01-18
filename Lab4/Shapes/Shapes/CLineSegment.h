@@ -6,7 +6,7 @@ class CLineSegment final: public CShape
 {
 public:
 	CLineSegment() = default;
-	virtual ~CLineSegment() = default;
+	~CLineSegment() = default;
 
 	CLineSegment(CPoint startPoint, CPoint endPoint, std::string outlineColor);
 

@@ -4,7 +4,11 @@
 class CSolidShape : public ISolidShape
 {
 public:
+	CSolidShape() = default;
+	CSolidShape(std::string color);
+
 	virtual std::string GetFillColor()const;
-protected:
+
+private:
 	std::string m_fillColor;
 };

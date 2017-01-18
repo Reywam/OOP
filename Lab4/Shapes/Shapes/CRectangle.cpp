@@ -2,12 +2,11 @@
 #include "CRectangle.h"
 
 CRectangle::CRectangle(CPoint leftTopPoint, double width, double height, std::string outlineColor, std::string fillColor)
+	:CShape(outlineColor), CSolidShape(fillColor)
 {
 	m_leftTop = leftTopPoint;
 	m_width = width;
 	m_height = height;
-	m_outlineColor = outlineColor;
-	m_fillColor = fillColor;
 }
 
 double CRectangle::GetArea()const
@@ -22,7 +21,7 @@ double CRectangle::GetPerimeter()const
 
 std::string CRectangle::GetOutlineColor()const
 {
-	return m_outlineColor;
+	return CShape::GetOutlineColor();
 }
 
 std::string CRectangle::GetFillColor()const
@@ -56,7 +55,7 @@ std::string CRectangle::ToString()const
 		+ " " + m_leftTop.ToString()
 		+ " " + std::to_string(m_width)
 		+ " " + std::to_string(m_height)
-		+ " " + m_outlineColor
-		+ " " + m_fillColor
+		+ " " + CShape::GetOutlineColor()
+		+ " " + CSolidShape::GetFillColor()
 		);
 }
