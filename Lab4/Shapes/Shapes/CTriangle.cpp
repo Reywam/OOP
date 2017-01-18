@@ -20,13 +20,12 @@ double CTriangle::GetPerimeter()const
 
 double CTriangle::GetArea()const
 {
-	auto P = GetPerimeter() / 2;
+	auto area = (0.5 * fabs((m_vertex2.x - m_vertex1.x)
+		* (m_vertex3.y - m_vertex1.y)
+		- (m_vertex3.x - m_vertex1.x)
+		* (m_vertex2.y - m_vertex1.y)));
 
-	auto S = sqrt(P * (P - CLineSegment(m_vertex1, m_vertex2, "white").GetPerimeter()) 
-		* (P - CLineSegment(m_vertex2, m_vertex3, "white").GetPerimeter())
-		* (P - CLineSegment(m_vertex3, m_vertex1, "white").GetPerimeter()));
-
-	return S;
+	return area;
 }
 
 std::string CTriangle::ToString()const
