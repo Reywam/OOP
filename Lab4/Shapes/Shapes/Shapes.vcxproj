@@ -76,8 +76,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -86,8 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Boost\boost_1_62_0;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Boost\boost_1_62_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -161,8 +161,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(TargetPath) --log_level=test_suite</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
