@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "CLineSegment.h"
 
+CLineSegment::CLineSegment(CPoint startPoint, CPoint endPoint, std::string outlineColor)
+{
+	m_startPoint = startPoint;
+	m_endPoint = endPoint;
+	m_outlineColor = outlineColor;
+}
+
 CPoint CLineSegment::GetStartPoint()const
 {
 	return m_startPoint;

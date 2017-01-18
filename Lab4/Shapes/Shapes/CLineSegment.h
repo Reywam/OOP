@@ -8,12 +8,7 @@ public:
 	CLineSegment() = default;
 	virtual ~CLineSegment() = default;
 
-	CLineSegment(CPoint startPoint, CPoint endPoint, std::string outlineColor)
-	{
-		m_startPoint = startPoint;
-		m_endPoint = endPoint;
-		m_outlineColor = outlineColor;
-	}
+	CLineSegment(CPoint startPoint, CPoint endPoint, std::string outlineColor);
 
 	CPoint GetStartPoint()const;
 	CPoint GetEndPoint()const;
