@@ -100,21 +100,14 @@ bool CRemoteControl::CreateLineSegment(std::istream &args)
 
 	CPoint startPoint, endPoint;
 	string outlineColor;
-	try
-	{
-		startPoint.x = boost::lexical_cast<double>(parameters[0]);
-		startPoint.y = boost::lexical_cast<double>(parameters[1]);
 
-		endPoint.x = boost::lexical_cast<double>(parameters[2]);
-		endPoint.y = boost::lexical_cast<double>(parameters[3]);
+	startPoint.x = stoi(parameters[0]);
+	startPoint.y = stoi(parameters[1]);
 
-		outlineColor = parameters[4];
-	}
-	catch (boost::bad_lexical_cast const &e)
-	{
-		m_output << e.what() << endl;
-		return false;
-	}
+	endPoint.x = stoi(parameters[2]);
+	endPoint.y = stoi(parameters[3]);
+
+	outlineColor = parameters[4];
 
 	m_shapes.push_back(make_shared<CLineSegment>(CLineSegment(startPoint, endPoint, outlineColor)));
 
@@ -138,22 +131,14 @@ bool CRemoteControl::CreateCircle(std::istream &args)
 	CPoint center;
 	double radius;
 
-	try
-	{
-		center.x = boost::lexical_cast<double>(parameters[0]);
-		center.y = boost::lexical_cast<double>(parameters[1]);
+	center.x = stoi(parameters[0]);
+	center.y = stoi(parameters[1]);
 
-		radius = boost::lexical_cast<double>(parameters[2]);
-		if (radius < 0)
-		{
-			m_output << "Circle radius can't be negative value." << endl;
-			return true;
-		}
-	}
-	catch (boost::bad_lexical_cast const &e)
+	radius = stoi(parameters[2]);
+	if (radius < 0)
 	{
-		m_output << e.what() << endl;
-		return false;
+		m_output << "Circle radius can't be negative value." << endl;
+		return true;
 	}
 
 	m_shapes.push_back(make_shared<CCircle>(CCircle(center, radius, parameters[3], parameters[4])));
@@ -176,22 +161,14 @@ bool CRemoteControl::CreateTriangle(std::istream &args)
 
 	CPoint vertex1, vertex2, vertex3;
 
-	try
-	{
-		vertex1.x = boost::lexical_cast<double>(parameters[0]);
-		vertex1.y = boost::lexical_cast<double>(parameters[1]);
+	vertex1.x = stoi(parameters[0]);
+	vertex1.y = stoi(parameters[1]);
 
-		vertex2.x = boost::lexical_cast<double>(parameters[2]);
-		vertex2.y = boost::lexical_cast<double>(parameters[3]);
+	vertex2.x = stoi(parameters[2]);
+	vertex2.y = stoi(parameters[3]);
 
-		vertex3.x = boost::lexical_cast<double>(parameters[4]);
-		vertex3.y = boost::lexical_cast<double>(parameters[5]);
-	}
-	catch (boost::bad_lexical_cast const &e)
-	{
-		m_output << e.what() << endl;
-		return false;
-	}
+	vertex3.x = stoi(parameters[4]);
+	vertex3.y = stoi(parameters[5]);
 
 	m_shapes.push_back(make_shared<CTriangle>(CTriangle(vertex1, vertex2, vertex3, parameters[6], parameters[7])));
 
@@ -216,21 +193,16 @@ bool CRemoteControl::CreateRectangle(std::istream &args)
 	double width = 0;
 	double height = 0;
 
-	try
+	leftTop.x = stoi(parameters[0]);
+	leftTop.y = stoi(parameters[1]);
+
+	width = stoi(parameters[2]);
+	height= stoi(parameters[3]);
+
+	if (width < 0 || height < 0)
 	{
-		leftTop.x = boost::lexical_cast<double>(parameters[0]);
-		leftTop.y = boost::lexical_cast<double>(parameters[1]);
-		width = boost::lexical_cast<double>(parameters[2]);
-		height= boost::lexical_cast<double>(parameters[3]);
-		if (width < 0 || height < 0)
-		{
-			m_output << "Width and height can't be negative value." << endl;
-			return true;
-		}
-	}
-	catch (boost::bad_lexical_cast const &e)
-	{
-		m_output << e.what() << endl;
+		m_output << "Width and height can't be negative value." << endl;
+		return true;
 	}
 
 	m_shapes.push_back(make_shared<CRectangle>(CRectangle(leftTop, width, height, parameters[4], parameters[5])));

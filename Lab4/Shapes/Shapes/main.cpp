@@ -12,18 +12,8 @@
 
 using namespace std;
 
-void DoSomething(IShape & shape)
-{
-	cout << shape.ToString() << endl;
-}
-
 int main(int argc, char* argv[])
 {
-	{
-		CCircle c({ 0, 0 }, 42, "red", "green");
-		DoSomething(c);
-	}
-
 	if (argc != 2)
 	{
 		cout << "Invalid arguements count." << endl;
